@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antes da nossa conversa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-deep: #10262A;
+    --ink-deeper: #0A1A1D;
+    --paper: #F5EEE1;
+    --paper-edge: #E7DBC5;
+    --charcoal: #26221D;
+    --charcoal-soft: #5A5347;
+    --gold: #B8924A;
+    --gold-soft: #D8B876;
+    --fog: #9FB8B2;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body{
+    margin: 0;
+    padding: 0;
+    background: var(--ink-deep);
+    color: var(--fog);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body{
+    min-height: 100vh;
+    background:
+      radial-gradient(60% 50% at 50% 0%, rgba(184,146,74,0.10), transparent 70%),
+      linear-gradient(180deg, var(--ink-deep) 0%, var(--ink-deeper) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 64px 20px 80px;
+  }
+
+  .intro{
+    max-width: 560px;
+    text-align: center;
+    margin-bottom: 44px;
+  }
+
+  .intro .eyebrow{
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+
+  .intro h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(28px, 4.2vw, 40px);
+    line-height: 1.35;
+    color: #EFE9DA;
+    margin: 0 0 16px;
+  }
+
+  .intro p{
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--fog);
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  /* the card sits like paper, glowing softly */
+  .card-wrap{
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .glow{
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle at 50% 40%, rgba(216,184,118,0.20), transparent 65%);
+    filter: blur(10px);
+    animation: breathe 7s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes breathe{
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.03); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .glow{ animation: none; }
+  }
+
+  .card{
+    position: relative;
+    background: var(--paper);
+    border-radius: 6px;
+    padding: 44px 40px 40px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.55);
+  }
+
+  .card::before{
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--gold), transparent 90%);
+    border-radius: 6px 0 0 6px;
+  }
+
+  label{
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--charcoal-soft);
+    margin-bottom: 8px;
+  }
+
+  .field{
+    margin-bottom: 24px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea{
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: var(--charcoal);
+    background: #FFFEFB;
+    border: 1px solid var(--paper-edge);
+    border-radius: 4px;
+    padding: 12px 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  textarea{
+    min-height: 130px;
+    resize: vertical;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  input::placeholder, textarea::placeholder{
+    color: #B3A98F;
+  }
+
+  input:focus, textarea:focus{
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184,146,74,0.18);
+  }
+
+  .question-label{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--charcoal);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 12px;
+  }
+
+  .row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  @media (max-width: 480px){
+    .row{ grid-template-columns: 1fr; }
+    .card{ padding: 34px 24px 30px; }
+  }
+
+  button{
+    width: 100%;
+    margin-top: 8px;
+    padding: 15px 20px;
+    background: var(--charcoal);
+    color: var(--paper);
+    border: none;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  button:hover{ background: #3A342B; }
+  button:active{ transform: scale(0.99); }
+
+  button:focus-visible{
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .footnote{
+    text-align: center;
+    font-size: 13px;
+    color: var(--fog);
+    opacity: 0.75;
+    margin-top: 22px;
+    line-height: 1.6;
+  }
+
+  /* confirmation state */
+  .confirm{
+    display: none;
+    text-align: center;
+    padding: 20px 4px 4px;
+  }
+
+  .confirm.show{ display: block; }
+  .form-body.hide{ display: none; }
+
+  .confirm h2{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--charcoal);
+    margin: 0 0 12px;
+  }
+
+  .confirm p{
+    font-size: 14.5px;
+    color: var(--charcoal-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+  <div class="intro">
+    <div class="eyebrow">Antes de conversarmos</div>
+    <h1>Me conta o que está pesando.</h1>
+    <p>Preencha os campos abaixo. Assim que eu receber, entro em contato para agendarmos uma conversa gratuita e entender como posso ajudar.</p>
+  </div>
+
+  <div class="card-wrap">
+    <div class="glow"></div>
+    <div class="card">
+
+      <form class="form-body" id="intake-form">
+        <input type="hidden" name="_subject" value="Novo pedido de conversa gratuita">
+        <input type="hidden" name="_captcha" value="false">
+        <div class="row">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+          </div>
+          <div class="field">
+            <label for="whatsapp">WhatsApp (com DDD)</label>
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+        </div>
+
+        <div class="field">
+          <label class="question-label" for="relato">Me conte, com suas palavras, o que você está vivendo hoje que te incomoda, e que tipo de ajuda você está buscando.</label>
+          <textarea id="relato" name="relato" placeholder="Escreva com calma, do seu jeito." required></textarea>
+        </div>
+
+        <button type="submit">Quero agendar minha conversa gratuita</button>
+
+        <p class="footnote">Suas informações são usadas apenas para preparar nossa conversa.</p>
+      </form>
+
+      <div class="confirm" id="confirm-message">
+        <h2>Recebido.</h2>
+        <p>Obrigado por compartilhar isso comigo. Em breve entrarei em contato pelo WhatsApp para agendarmos sua conversa gratuita.</p>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  // Sends the submission straight to Diego's inbox via FormSubmit
+  // (https://formsubmit.co) — no account or backend needed.
+  // IMPORTANT: the very first submission triggers a one-time confirmation
+  // email from FormSubmit to diego@ascentria.com.br. Diego must click the
+  // activation link in that email before further submissions will arrive.
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/diego@ascentria.com.br';
+
+  const form = document.getElementById('intake-form');
+  const confirmMsg = document.getElementById('confirm-message');
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+
+    const data = new FormData(form);
+
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    })
+      .then(function(res){
+        if (!res.ok) throw new Error('Falha no envio');
+        form.classList.add('hide');
+        confirmMsg.classList.add('show');
+      })
+      .catch(function(){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Quero agendar minha conversa gratuita';
+        alert('Não foi possível enviar agora. Tente novamente em instantes.');
+      });
+  });
+</script>
+
+</body>
+</html>
